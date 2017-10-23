@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>我的三国</title>
+    <script src="./svg/svg.js"></script>
+    <script src="./svg/map.js"></script>
+</head>
+<body style="
+background: url(./back-map.jpg) no-repeat;
+background-position: 45px 0px;
+">
+<svg id="my-svg" style="width: 1000px;height: 1000px;">
+</svg>
+    <script>
+        var svgEle = document.getElementById('my-svg');
+        var svg = new mySvg(svgEle);
+        document.body.appendChild(svg.ele);
+        svg.add('rect',{
+            attr:{
+                width:300,
+                height:100
+            },
+            style:{
+                fill:'rgb(0,0,255)',
+                width:'100px',
+                height:'100px'
+            }
+        });
+        svgEle.onmousedown = function(e){
+            paths = [];
+            console.log(e);
+            console.log(e.target.tagName);
+        };
+        var paths = [];
+        svgEle.onmousemove = function(e){
+            paths.push(e.offsetX + ',' + e.offsetY);
+        };
+        svgEle.onmouseup = function(e){
+            console.log(paths.join(' '));
+        };
+        window.mapData.forEach(function(a){
+            var polygon = svg.create('polygon',a);
+            polygon.style = 'fill:#cccccc;' +
+                '            stroke:#000000;stroke-width:1';
+            svg.push(polygon);
+            polygon.onmouseover = function(){
+                this.style.fill = 'red';
+            }
+            polygon.onmouseout = function(){
+                this.style.fill = '#ccc';
+            }
+        });
+    </script>
+</body>
+</html>
