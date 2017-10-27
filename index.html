@@ -17,17 +17,6 @@ background-position: 45px 0px;
         var svgEle = document.getElementById('my-svg');
         var svg = new mySvg(svgEle);
         document.body.appendChild(svg.ele);
-        svg.add('rect',{
-            attr:{
-                width:300,
-                height:100
-            },
-            style:{
-                fill:'rgb(0,0,255)',
-                width:'100px',
-                height:'100px'
-            }
-        });
         svgEle.onmousedown = function(e){
             paths = [];
             console.log(e);
